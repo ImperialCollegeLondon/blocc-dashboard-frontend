@@ -85,7 +85,7 @@ const ReadingVisualisation: React.FC = () => {
                 <IconButton color="inherit">
                     <ShowChartIcon />
                 </IconButton>
-                <Typography variant="h6" sx={{color: theme.palette.text.primary}} gutterBottom>
+                <Typography variant="h6" sx={{color: theme.palette.text.primary}}>
                     Sensor Readings Live Monitoring
                 </Typography>
             </Box>

@@ -18,7 +18,7 @@ const ForkStatusVisualisation: React.FC = () => {
                 <IconButton color="inherit">
                     <AccountTreeIcon />
                 </IconButton>
-                <Typography variant="h6" sx={{color: theme.palette.text.primary}} gutterBottom>
+                <Typography variant="h6" sx={{color: theme.palette.text.primary}}>
                     Blockchains Fork Status
                 </Typography>
             </Box>
