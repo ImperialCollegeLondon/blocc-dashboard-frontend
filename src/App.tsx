@@ -7,6 +7,7 @@ import CssBaseline from '@mui/material/CssBaseline'
 
 import NavBar from './component/NavBar'
 import ReadingVisualisation from './component/ReadingVisualisation'
+import ForkStatusVisualisation from './component/ForkStatusVisualisation';
 
 interface ColorModeContextType {
   toggleColorMode: () => void;
@@ -57,6 +58,9 @@ function App(): ReactElement {
             <Grid container spacing={2}>
             <Grid item xs={6}>
               <ReadingVisualisation />
+            </Grid>
+            <Grid item xs={6}>
+              <ForkStatusVisualisation />
             </Grid>
 
             </Grid>
