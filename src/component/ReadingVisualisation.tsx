@@ -78,7 +78,7 @@ const ReadingVisualisation: React.FC = () => {
     const theme = useTheme()
 
     return (
-        <Paper sx={{p:2}}>
+        <Paper sx={{p:2, height: 500}} >
 
             {/* Primary heading */}
             <Box display="flex" alignItems="center">
