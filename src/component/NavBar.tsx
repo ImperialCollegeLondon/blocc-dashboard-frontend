@@ -22,7 +22,7 @@ const NavBar: React.FC<NavBarProps> = ({ toggleColorMode }) => {
           <IconButton size="large" color="inherit" >
             <AnalyticsIcon />
           </IconButton>
-          <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+          <Typography variant="h5" sx={{ flexGrow: 1 }}>
             Blockchain Logistics Optimising Chain of Custody (BLOCC) Dashboard
           </Typography>
           <IconButton onClick={toggleColorMode} color="inherit">
