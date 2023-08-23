@@ -4,6 +4,8 @@ import ShowChartIcon from '@mui/icons-material/ShowChart';
 import { LineChart } from '@mui/x-charts/LineChart';
 import { Paper, Box, IconButton, Typography, Divider, CircularProgress, FormControl, InputLabel, MenuItem, Select } from '@mui/material';
 
+import { availableContainers } from '../config';
+
 const API_ENDPOINT = process.env.REACT_APP_API_ENDPOINT;
 
 const timeFormatter = new Intl.DateTimeFormat('en-US', {
@@ -24,8 +26,6 @@ interface ApprovedReading {
 const ReadingVisualisation: React.FC = () => {
 
     // TODO: add start date and time
-
-    const availableContainers = [1,2,3,4,5,6]
 
     const [data, setData] = React.useState<ApprovedReading[]>([]);
     const [loading, setLoading] = React.useState<boolean>(true);
