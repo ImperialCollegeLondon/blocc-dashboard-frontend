@@ -1,0 +1,134 @@
+[
+  {
+    "timestamp": 1692492536,
+    "temperature": 10.809121,
+    "approvals": 1,
+    "txId": "27805563c3270b150c2c3f36d26ab3c1b8046b380bb07ab8c8a69bf6e3c3f71d"
+  },
+  {
+    "timestamp": 1692492538,
+    "temperature": 11.194914,
+    "approvals": 1,
+    "txId": "338145e9401416d3b571cdae2c27f1e1f76df65797aefd718eb19e3858f6d65a"
+  },
+  {
+    "timestamp": 1692492541,
+    "temperature": 2.5596547,
+    "approvals": 1,
+    "txId": "4dcf8a4dfcbd60bcb5562ef578496db66239b99fe559fdb4261291de52d9283a"
+  },
+  {
+    "timestamp": 1692492543,
+    "temperature": 13.794985,
+    "approvals": 1,
+    "txId": "98da499a1bbc830d04dc4e749c0301618f0a603a2597edee86de9725ec2d376b"
+  },
+  {
+    "timestamp": 1692492545,
+    "temperature": 4.6878457,
+    "approvals": 1,
+    "txId": "ca218fe27401afebaf90fc2d37754177824546aee50f809f2adcd15dc0121bb9"
+  },
+  {
+    "timestamp": 1692492547,
+    "temperature": 8.765652,
+    "approvals": 1,
+    "txId": "f06f08cf3d34e5b65df503b0974896671e6fa04ae1ccdea01ac260e47c171a75"
+  },
+  {
+    "timestamp": 1692492550,
+    "temperature": 34.314262,
+    "approvals": 1,
+    "txId": "f05c401d93a57824e2b9e22475d723887cc6c1fcf92181d55251b68b2d12428f"
+  },
+  {
+    "timestamp": 1692492552,
+    "temperature": 21.861744,
+    "approvals": 1,
+    "txId": "32927cb40caceee21526b4049e0946423fac2d5ca6a7e0299554d3b4e871a92a"
+  },
+  {
+    "timestamp": 1692492555,
+    "temperature": 10.370434,
+    "approvals": 1,
+    "txId": "e03fcc87eb491d4a14113da180ccbaaab5cd00e3924a5e031f4e3c008a293c34"
+  },
+  {
+    "timestamp": 1692492557,
+    "temperature": 23.14161,
+    "approvals": 1,
+    "txId": "5bc0b72de2a6355c6cbcbda596c96fbf6264832999529c73ec42271fb6b7a5ad"
+  },
+  {
+    "timestamp": 1692492560,
+    "temperature": 29.749823,
+    "approvals": 1,
+    "txId": "c31373a0ef625db695731fc87f5ac8bd54b3289afb8b5fdf35bd85e777acb977"
+  },
+  {
+    "timestamp": 1692492562,
+    "temperature": 30.613718,
+    "approvals": 1,
+    "txId": "3be3e41e6d79d2c0be4a7e62321aaf22e45b52ebd357294428bb7c4ff39e8220"
+  },
+  {
+    "timestamp": 1692492565,
+    "temperature": 39.269768,
+    "approvals": 1,
+    "txId": "26e3ac8fe59a2e652925884830ec18a70b6f74362a2e3a66cb231f0668194437"
+  },
+  {
+    "timestamp": 1692492568,
+    "temperature": 18.508875,
+    "approvals": 1,
+    "txId": "38c27141f337874ce9e9192426b5b3c087ae612ea8802e1fab92f3e5dc7a8c27"
+  },
+  {
+    "timestamp": 1692492570,
+    "temperature": 6.607218,
+    "approvals": 1,
+    "txId": "c62212502bc5e055d2b2516911cac1390022fe63e3531d0e6c648833fd28f175"
+  },
+  {
+    "timestamp": 1692492572,
+    "temperature": 12.805403,
+    "approvals": 1,
+    "txId": "9038ea5496ae970e139daa2ea7fc92e078fb529c16deef06c99ec936078a2281"
+  },
+  {
+    "timestamp": 1692492575,
+    "temperature": 27.730005,
+    "approvals": 1,
+    "txId": "0af6d2e589a4a0d2783bce4a5b72c69b8d46f63d06b64bf38e7a1f7a4afbcabe"
+  },
+  {
+    "timestamp": 1692492577,
+    "temperature": 30.791033,
+    "approvals": 1,
+    "txId": "56483f56d55eaa4bfa334f5f6dca80b57281a2ac28d081934eeca37d971122b5"
+  },
+  {
+    "timestamp": 1692492579,
+    "temperature": 14.167397,
+    "approvals": 1,
+    "txId": "d9afd1784aed4084a25127c8b7d074a4830464b15339b111c737b1634c8eb5dc"
+  },
+  {
+    "timestamp": 1692492581,
+    "temperature": 4.932759,
+    "approvals": 1,
+    "txId": "b08427c71935caf90bb16d2ecdaf03d738644825e895798af525282b6d740dba"
+  },
+  {
+    "timestamp": 1692492583,
+    "temperature": 19.73736,
+    "approvals": 1,
+    "txId": "5afc0e76f86de39b4fdddba41b395ebbd55686bd46c032ebc9c3a5fe73992480"
+  },
+  {
+    "timestamp": 1692492586,
+    "temperature": 27.302036,
+    "approvals": 1,
+    "txId": "5016290b2ec5484dee743a7b7b25f9a982cdd7bc2d4e5167ae29dddda702d962"
+  }
+]

@@ -1,4 +1,5 @@
 import type React from 'react'
+import { useTheme } from '@mui/material/styles'
 import AppBar from '@mui/material/AppBar'
 import Toolbar from '@mui/material/Toolbar'
 import Typography from '@mui/material/Typography'
@@ -8,11 +9,13 @@ import Brightness7Icon from '@mui/icons-material/Brightness7';
 import AnalyticsIcon from '@mui/icons-material/Analytics';
 
 interface NavBarProps {
-  mode: 'dark' | 'light',
   toggleColorMode: () => void
 }
 
-const NavBar: React.FC<NavBarProps> = ({ mode, toggleColorMode}) => {
+const NavBar: React.FC<NavBarProps> = ({ toggleColorMode }) => {
+
+  const theme = useTheme()
+
   return (
       <AppBar position="sticky" component="nav">
         <Toolbar>
@@ -23,7 +26,7 @@ const NavBar: React.FC<NavBarProps> = ({ mode, toggleColorMode}) => {
             Blockchain Logistics Optimising Chain of Custody (BLOCC) Dashboard
           </Typography>
           <IconButton onClick={toggleColorMode} color="inherit">
-            {mode === 'dark' ? <Brightness7Icon /> : <Brightness4Icon />}
+            {theme.palette.mode === 'dark' ? <Brightness7Icon /> : <Brightness4Icon />}
           </IconButton>
         </Toolbar>
       </AppBar>
