@@ -1,7 +1,7 @@
 import type React from 'react'
 import { useTheme } from '@mui/material/styles'
 import AccountTreeIcon from '@mui/icons-material/AccountTree'
-import { Paper, Box, IconButton, Typography, Divider, Grid } from '@mui/material';
+import { Paper, Box, Typography, Divider, Grid } from '@mui/material';
 
 import ContainerForkStatus from './ContainerForkStatus';
 import { availableContainers } from '../config';
@@ -15,9 +15,7 @@ const ForkStatusVisualisation: React.FC = () => {
 
             {/* Primary heading */}
             <Box display="flex" alignItems="center">
-                <IconButton color="inherit">
-                    <AccountTreeIcon />
-                </IconButton>
+                <AccountTreeIcon sx={{mr: 1}} />
                 <Typography variant="h6" sx={{color: theme.palette.text.primary}}>
                     Blockchains Fork Status
                 </Typography>

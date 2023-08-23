@@ -2,7 +2,7 @@ import React from 'react'
 import { useTheme } from '@mui/material/styles'
 import ShowChartIcon from '@mui/icons-material/ShowChart';
 import { LineChart } from '@mui/x-charts/LineChart';
-import { Paper, Box, IconButton, Typography, Divider, CircularProgress, FormControl, InputLabel, MenuItem, Select } from '@mui/material';
+import { Paper, Box, Typography, Divider, CircularProgress, FormControl, InputLabel, MenuItem, Select } from '@mui/material';
 
 import { availableContainers } from '../config';
 
@@ -82,9 +82,7 @@ const ReadingVisualisation: React.FC = () => {
 
             {/* Primary heading */}
             <Box display="flex" alignItems="center">
-                <IconButton color="inherit">
-                    <ShowChartIcon />
-                </IconButton>
+                <ShowChartIcon sx={{mr: 1}} />
                 <Typography variant="h6" sx={{color: theme.palette.text.primary}}>
                     Sensor Readings Live Monitoring
                 </Typography>
