@@ -5,6 +5,7 @@ import { LineChart } from '@mui/x-charts/LineChart';
 import { Paper, Box, Typography, Divider, CircularProgress, FormControl, InputLabel, MenuItem, Select } from '@mui/material';
 
 import { availableContainers } from '../config';
+import { type ApprovedReading } from '../type/api'
 
 const API_ENDPOINT = process.env.REACT_APP_API_ENDPOINT;
 const POLL_INTERVAL = Number(process.env.REACT_APP_POLL_INTERVAL);
@@ -15,14 +16,6 @@ const timeFormatter = new Intl.DateTimeFormat('en-US', {
     second: '2-digit',
     hour12: false
 });
-
-interface ApprovedReading {
-    txId : string,
-    temperature : number,
-    approvals: number,
-    timestamp: number,
-    [key: string]: string | number;
-}
 
 const ReadingVisualisation: React.FC = () => {
 

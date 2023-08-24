@@ -8,6 +8,7 @@ import CssBaseline from '@mui/material/CssBaseline'
 import NavBar from './component/NavBar'
 import ReadingVisualisation from './component/ReadingVisualisation'
 import ForkStatusVisualisation from './component/ForkStatusVisualisation';
+import TransactionTable from './component/TransactionTable';
 
 interface ColorModeContextType {
   toggleColorMode: () => void;
@@ -56,13 +57,15 @@ function App(): ReactElement {
           <Container maxWidth="lg" sx={{ mt: 4, mb: 4 }}>
             {/* Define inter-row space */}
             <Grid container spacing={2}>
-            <Grid item xs={6}>
-              <ReadingVisualisation />
-            </Grid>
-            <Grid item xs={6}>
-              <ForkStatusVisualisation />
-            </Grid>
-
+              <Grid item xs={6}>
+                <ReadingVisualisation />
+              </Grid>
+              <Grid item xs={6}>
+                <ForkStatusVisualisation />
+              </Grid>
+              <Grid item xs={12}>
+                <TransactionTable />
+              </Grid>
             </Grid>
         
           </Container>
