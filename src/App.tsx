@@ -5,6 +5,11 @@ import Container from '@mui/material/Container'
 import Grid from '@mui/material/Grid';
 import CssBaseline from '@mui/material/CssBaseline'
 
+import '@fontsource/roboto/300.css';
+import '@fontsource/roboto/400.css';
+import '@fontsource/roboto/500.css';
+import '@fontsource/roboto/700.css';
+
 import NavBar from './component/NavBar'
 import ReadingVisualisation from './component/ReadingVisualisation'
 import ForkStatusVisualisation from './component/ForkStatusVisualisation';
