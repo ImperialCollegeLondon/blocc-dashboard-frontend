@@ -6,6 +6,7 @@ import HelpOutlineIcon from '@mui/icons-material/HelpOutline';
 import { IconButton, ListItemButton, ListItemText, Avatar, ListItemAvatar, Grid, Tooltip, CircularProgress } from '@mui/material';
 
 const API_ENDPOINT = process.env.REACT_APP_API_ENDPOINT;
+const POLL_INTERVAL = Number(process.env.REACT_APP_POLL_INTERVAL);
 
 interface ContainerForkStatusProps {
     containerNum: number
@@ -73,8 +74,7 @@ const ContainerForkStatus: React.FC<ContainerForkStatusProps> = ({ containerNum 
         // Call fetchData immediately to load data when the component mounts
         fetchData();
     
-        // Set up an interval to fetch data every 2 seconds
-        const intervalId = setInterval(fetchData, 2000);
+        const intervalId = setInterval(fetchData, POLL_INTERVAL);
     
         // Clear the interval when the component is unmounted or if containerNum changes
         return () => { clearInterval(intervalId) };

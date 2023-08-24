@@ -7,6 +7,7 @@ import { Paper, Box, Typography, Divider, CircularProgress, FormControl, InputLa
 import { availableContainers } from '../config';
 
 const API_ENDPOINT = process.env.REACT_APP_API_ENDPOINT;
+const POLL_INTERVAL = Number(process.env.REACT_APP_POLL_INTERVAL);
 
 const timeFormatter = new Intl.DateTimeFormat('en-US', {
     hour: '2-digit',
@@ -54,12 +55,10 @@ const ReadingVisualisation: React.FC = () => {
                     return await response.json();
                 })
                 .then(data => {
-                    console.log(data);
                     setData(data);
                     setLoading(false);
                 })
                 .catch(error => {
-                    console.error(error);
                     setError(error.message);
                     setLoading(false);
                 });
@@ -68,8 +67,7 @@ const ReadingVisualisation: React.FC = () => {
         // Call fetchData immediately to load data when the component mounts
         fetchData();
     
-        // Set up an interval to fetch data every 2 seconds
-        const intervalId = setInterval(fetchData, 2000);
+        const intervalId = setInterval(fetchData, POLL_INTERVAL);
     
         // Clear the interval when the component is unmounted or if containerNum changes
         return () => { clearInterval(intervalId) };
