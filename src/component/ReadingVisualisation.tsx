@@ -26,8 +26,6 @@ interface ApprovedReading {
 
 const ReadingVisualisation: React.FC = () => {
 
-    // TODO: add start date and time
-
     const [data, setData] = React.useState<ApprovedReading[]>([]);
     const [loading, setLoading] = React.useState<boolean>(true);
     const [containerNum, setContainerNum] = React.useState<number>(5);
@@ -41,7 +39,9 @@ const ReadingVisualisation: React.FC = () => {
     
             // Define the parameters
             const params = {
-                containerNum: containerNum.toString()
+                containerNum: containerNum.toString(),
+                // Get the time for 10 mins ago in epoch second
+                sinceTimestamp: ((Date.now() / 1000 >> 0) - 600).toString() 
             };
     
             // Use URLSearchParams to append the parameters to the URL
@@ -88,7 +88,7 @@ const ReadingVisualisation: React.FC = () => {
 
             {/* Secondary heading */}
             <Typography variant="subtitle2" sx={{color: theme.palette.text.secondary}} gutterBottom>
-                The live update of sensor readings in the BLOCC network
+                The live update of sensor readings in last 10 minutes
             </Typography>
 
             <Divider />
@@ -132,13 +132,13 @@ const ReadingVisualisation: React.FC = () => {
             />
             )}
 
-            {!loading && data.length === 0 && (
+            {!loading && error == null && data.length === 0 && (
                 <Typography variant="subtitle1" sx={{color: theme.palette.text.disabled, mt: 3}} align="center">
                     No data available for the selected container.
                 </Typography>
             )}
 
-            {(error != null) && (
+            {(!loading && error != null) && (
                 <Typography variant="subtitle1" sx={{color: theme.palette.error.main, mt: 3}} align="center">
                     Error occurrer when fetching data for the selected container: {error}
                 </Typography>
