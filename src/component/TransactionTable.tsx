@@ -164,6 +164,7 @@ const TransactionTable: React.FC = () => {
                     <DateTimePicker
                         label="Start Date and Time"
                         value={startDate}
+                        views={['year', 'day', 'hours', 'minutes', 'seconds']}
                         onChange={(newDate: Date | null) => { setStartDate(newDate) }}
                         sx={{ ml:2, mt: 2 }}
                     />
@@ -172,6 +173,7 @@ const TransactionTable: React.FC = () => {
                     <DateTimePicker
                         label="End Date and Time"
                         value={endDate}
+                        views={['year', 'day', 'hours', 'minutes', 'seconds']}
                         onChange={(newDate: Date | null) => { setEndDate(newDate) }}
                         sx={{ ml:1, mt: 2 }}
                     />
@@ -190,8 +192,6 @@ const TransactionTable: React.FC = () => {
             </Box>
 
             <Divider />
-
-            {/* Where I'd like to have my table */}
 
             {fetchStatus === FetchStatus.Loading && (
                 <CircularProgress color="inherit"/>
