@@ -4,11 +4,12 @@ import { Box, CircularProgress, Divider, FormControl, InputLabel, MenuItem, Pape
 import { useTheme } from '@mui/material/styles'
 import { LocalizationProvider, DateTimePicker } from '@mui/x-date-pickers'
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns'
-import { type GridColDef, type GridValueGetterParams, DataGrid } from '@mui/x-data-grid'
+import { type GridColDef, type GridValueGetterParams, DataGrid, type GridRowParams } from '@mui/x-data-grid'
 
 import { availableContainers } from '../config';
 import { type SensorChaincodeTransaction } from '../type/api'
 import FetchStatus from '../type/fetchStatus'
+import TransactionDetail from './TransactionDetail'
 
 
 const API_ENDPOINT = process.env.REACT_APP_API_ENDPOINT;
@@ -61,6 +62,8 @@ const TransactionTable: React.FC = () => {
     const [data, setData] = React.useState<SensorChaincodeTransaction[]>([])
     const [fetchStatus, setFetchStatus] = React.useState<FetchStatus>(FetchStatus.Loading)
     const [errorMsg, setErrorMsg] = React.useState<string>('')
+    const [selectedRow, setSelectedRow] = React.useState<SensorChaincodeTransaction | null>(null);
+    const [isDialogOpen, toggleIsDialogOpen] = React.useState(false);
 
     React.useEffect(() => {
         // Function to fetch data from the backend
@@ -216,6 +219,19 @@ const TransactionTable: React.FC = () => {
                       }}
                     getRowId={(row) => row.txId}
                     autoHeight
+                    onRowClick={(params: GridRowParams<SensorChaincodeTransaction>) => {
+                        setSelectedRow(params.row)
+                        toggleIsDialogOpen(true)
+                    }}
+                    disableRowSelectionOnClick
+                />
+            )}
+
+            {selectedRow !== null && (
+                <TransactionDetail
+                    transaction={selectedRow}
+                    isDialogOpen={isDialogOpen}
+                    toggleIsDialogOpen={toggleIsDialogOpen}
                 />
             )}
 

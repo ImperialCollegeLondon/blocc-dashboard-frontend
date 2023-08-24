@@ -15,7 +15,7 @@ export interface SensorChaincodeTransaction {
     containerNum: number,
 }
 
-interface ApprovalTransaction {
+export interface ApprovalTransaction {
     txId: string,
     creator: string,
     createdTimestamp: number,
