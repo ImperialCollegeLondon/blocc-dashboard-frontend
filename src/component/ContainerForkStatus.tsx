@@ -5,6 +5,8 @@ import ErrorOutlineIcon from '@mui/icons-material/ErrorOutline';
 import HelpOutlineIcon from '@mui/icons-material/HelpOutline';
 import { IconButton, ListItemButton, ListItemText, Avatar, ListItemAvatar, Grid, Tooltip, CircularProgress } from '@mui/material';
 
+import { type ForkStatusResponse } from '../type/api'
+
 const API_ENDPOINT = process.env.REACT_APP_API_ENDPOINT;
 const POLL_INTERVAL = Number(process.env.REACT_APP_POLL_INTERVAL);
 
@@ -12,34 +14,32 @@ interface ContainerForkStatusProps {
     containerNum: number
 }
 
-type ForkStatus = 'forked' | 'normal' | 'disconnected' | 'loading'
+type ForkStatus = 'FORKED' | 'NORMAL' | 'NOT_AVAILABLE' | 'LOADING'
 
 const statusColorMapping: Record<string, "error" | "success" | "warning" | "secondary"> = {
-    forked: 'error',
-    normal: 'success',
-    disconnected: 'warning',
-    loading: 'secondary'
+    FORKED: 'error',
+    NORMAL: 'success',
+    NOT_AVAILABLE: 'warning',
+    LOADING: 'secondary'
 }
 
 const statusIconMapping = {
-    forked: (<ErrorOutlineIcon />),
-    normal: (<CheckCircleOutlineIcon />),
-    disconnected: (<HelpOutlineIcon />),
-    loading: (<CircularProgress />)
+    FORKED: (<ErrorOutlineIcon />),
+    NORMAL: (<CheckCircleOutlineIcon />),
+    NOT_AVAILABLE: (<HelpOutlineIcon />),
+    LOADING: (<CircularProgress />)
 }
 
 const statusTooltipMapping = {
-    forked: 'Forked',
-    normal: 'Normal',
-    disconnected: 'Disconnected',
-    loading: 'Loading'
+    FORKED: 'Forked',
+    NORMAL: 'Normal',
+    NOT_AVAILABLE: 'Disconnected',
+    LOADING: 'Loading'
 }
-
-const DISCONNECTED = Symbol('DISCONNECTED');
 
 const ContainerForkStatus: React.FC<ContainerForkStatusProps> = ({ containerNum }) => {
 
-    const [forkStatus, setForkStatus] = React.useState<ForkStatus>('loading');
+    const [forkStatus, setForkStatus] = React.useState<ForkStatus>('LOADING');
 
     React.useEffect(() => {
         // Function to fetch data from the backend
@@ -58,16 +58,10 @@ const ContainerForkStatus: React.FC<ContainerForkStatusProps> = ({ containerNum 
     
             void fetch(url)
                 .then(async (response) => {
-                    if (!response.ok) {
-                        setForkStatus('disconnected');
-                        // Return a resolved promise to prevent further processing
-                        return await Promise.resolve(DISCONNECTED);
-                    }
-                    return await (response.json() as Promise<boolean>);
+                    return await (response.json() as Promise<ForkStatusResponse>);
                 })
                 .then(data => {
-                    if (data === DISCONNECTED) return;
-                    setForkStatus((data) ? 'forked' : 'normal')
+                    setForkStatus(data.status)
                 })
         };
     
@@ -92,7 +86,7 @@ const ContainerForkStatus: React.FC<ContainerForkStatusProps> = ({ containerNum 
                 </ListItemAvatar>
 
                 {/* Text in the centre */}
-                <ListItemText primary={`Contianer ${containerNum}`} />
+                <ListItemText primary={`Container ${containerNum}`} />
 
                 {/* Status Icon in the centre */}
                 <Tooltip title={statusTooltipMapping[forkStatus]}>

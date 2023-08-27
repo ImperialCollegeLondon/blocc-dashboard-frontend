@@ -26,3 +26,7 @@ interface TemperatureHumidityReading {
     relativeHumidity: number,
     timestamp: number,
 }
+
+export interface ForkStatusResponse {
+    status : "FORKED" | "NORMAL" | "NOT_AVAILABLE"
+}
