@@ -5,6 +5,7 @@ import { LineChart } from '@mui/x-charts/LineChart';
 import { Paper, Box, Typography, Divider, CircularProgress, FormControl, InputLabel, MenuItem, Select } from '@mui/material';
 
 import { availableContainers } from '../config';
+import FetchStatus from '../type/fetchStatus'
 import { type ApprovedReading } from '../type/api'
 
 const POLL_INTERVAL = Number(process.env.REACT_APP_POLL_INTERVAL);
@@ -19,9 +20,9 @@ const timeFormatter = new Intl.DateTimeFormat('en-US', {
 const ReadingVisualisation: React.FC = () => {
 
     const [data, setData] = React.useState<ApprovedReading[]>([]);
-    const [loading, setLoading] = React.useState<boolean>(true);
     const [containerNum, setContainerNum] = React.useState<number>(5);
-    const [error, setError] = React.useState<string | null>(null);
+    const [fetchStatus, setFetchStatus] = React.useState<FetchStatus>(FetchStatus.Loading)
+    const [errorMsg, setErrorMsg] = React.useState<string>('')
 
     React.useEffect(() => {
         // Function to fetch data from the backend
@@ -43,11 +44,11 @@ const ReadingVisualisation: React.FC = () => {
                 })
                 .then(data => {
                     setData(data);
-                    setLoading(false);
+                    setFetchStatus(FetchStatus.Success)
                 })
                 .catch(error => {
-                    setError(error.message);
-                    setLoading(false);
+                    setErrorMsg(error.message);
+                    setFetchStatus(FetchStatus.Error)
                 });
         };
     
@@ -95,11 +96,11 @@ const ReadingVisualisation: React.FC = () => {
             </FormControl>
 
             
-            {loading && (
+            {fetchStatus === FetchStatus.Loading && (
                 <CircularProgress color="inherit"/>
             )}
 
-            {!loading && data.length > 0 && (
+            {fetchStatus === FetchStatus.Success && data.length > 0 && (
                 <LineChart
                 xAxis={[
                     {
@@ -119,15 +120,15 @@ const ReadingVisualisation: React.FC = () => {
             />
             )}
 
-            {!loading && error == null && data.length === 0 && (
+            {fetchStatus === FetchStatus.Success && data.length === 0 && (
                 <Typography variant="subtitle1" sx={{color: theme.palette.text.disabled, mt: 3}} align="center">
                     No data available for the selected container.
                 </Typography>
             )}
 
-            {(!loading && error != null) && (
+            {fetchStatus === FetchStatus.Error && (
                 <Typography variant="subtitle1" sx={{color: theme.palette.error.main, mt: 3}} align="center">
-                    Error occurrer when fetching data for the selected container: {error}
+                    Error occurred when fetching data for the selected container: {errorMsg}
                 </Typography>
             )}
 

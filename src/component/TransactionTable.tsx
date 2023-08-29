@@ -193,7 +193,7 @@ const TransactionTable: React.FC = () => {
 
             {fetchStatus === FetchStatus.Error && (
                 <Typography variant="subtitle1" sx={{color: theme.palette.error.main, mt: 3}} align="center">
-                    Error occurrer when fetching data for the selected container: {errorMsg}
+                    Error occurred when fetching data for the selected container: {errorMsg}
                 </Typography>
             )}
 
