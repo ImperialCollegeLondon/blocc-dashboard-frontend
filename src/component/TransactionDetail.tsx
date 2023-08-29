@@ -14,7 +14,7 @@ interface TransactionDetailProps {
 
 const TransactionDetail: React.FC<TransactionDetailProps> = ({ transaction, isDialogOpen, toggleIsDialogOpen}) => {
 
-    const approvalTrasnsactionslDataGridColumnDefinitions: GridColDef[] = [
+    const approvalTransactionsDataGridColumnDefinitions: GridColDef[] = [
         { 
             field: 'txId',
             headerName: 'Transaction ID',
@@ -49,7 +49,7 @@ const TransactionDetail: React.FC<TransactionDetailProps> = ({ transaction, isDi
             onClose={() => { toggleIsDialogOpen(false) }}
         >
             <DialogTitle>
-                Sensor Chaincodo Transaction details
+                Sensor Chaincode Transaction details
             </DialogTitle>
 
             <DialogContent dividers>
