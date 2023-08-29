@@ -11,8 +11,6 @@ import { type SensorChaincodeTransaction } from '../type/api'
 import FetchStatus from '../type/fetchStatus'
 import TransactionDetail from './TransactionDetail'
 
-
-const API_ENDPOINT = process.env.REACT_APP_API_ENDPOINT;
 const POLL_INTERVAL = Number(process.env.REACT_APP_POLL_INTERVAL);
 
 const transactionDataGridColumnDefinitions: GridColDef[] = [
@@ -29,24 +27,25 @@ const transactionDataGridColumnDefinitions: GridColDef[] = [
     {
         field: 'createdTimestamp',
         headerName: 'Created At',
-        valueGetter: (params: GridValueGetterParams<SensorChaincodeTransaction>) => {
-            const date: Date = new Date(params.row.createdTimestamp * 1000)
-            return date.toLocaleString()
-        },
-        width: 150,
+        type: 'dateTime',
+        valueGetter: (params: GridValueGetterParams<SensorChaincodeTransaction>) =>
+            new Date(params.row.createdTimestamp * 1000),
+        width: 170,
     },
     {
         field: 'temperature',
         headerName: 'Temperature (°C)',
+        type: 'number',
         valueGetter: (params: GridValueGetterParams<SensorChaincodeTransaction>) =>
-            params.row.reading.temperature.toString(),
+            params.row.reading.temperature,
         width: 130,
     },
     {
         field: 'approvals',
         headerName: 'Approvals',
+        type: 'number',
         valueGetter: (params: GridValueGetterParams<SensorChaincodeTransaction>) => 
-            params.row.approvals.length.toString(),
+            params.row.approvals.length,
         width: 120,
     },
 ]
@@ -68,10 +67,6 @@ const TransactionTable: React.FC = () => {
     React.useEffect(() => {
         // Function to fetch data from the backend
         const fetchData = (): void => {
-            // setFetchStatus(FetchStatus.Loading)
-
-            // Create a new URL object with the base API endpoint
-            const url = new URL(`${API_ENDPOINT}/transaction/sensorChaincodeTransactions`);
     
             // Define the parameters
             const params: Record<string, string> = {};
@@ -94,11 +89,7 @@ const TransactionTable: React.FC = () => {
                 params.approvalWindow = approvalWindow.toString();
             }
 
-    
-            // Use URLSearchParams to append the parameters to the URL
-            url.search = new URLSearchParams(params).toString();
-    
-            fetch(url)
+            fetch('/api/v1/transaction/sensorChaincodeTransactions?' + new URLSearchParams(params).toString())
                 .then(async (response) => {
                     if (!response.ok) {
                         const errorData = await response.json();
@@ -190,7 +181,7 @@ const TransactionTable: React.FC = () => {
                     type="number"
                     value={approvalWindow}
                     onChange={event => { setApprovalWindow(Number(event.target.value)) }}
-                    InputProps={{ inputProps: { min: 1 } }} // Makes sure the number is positive
+                    InputProps={{ inputProps: { min: 0 } }}
                 />
             </Box>
 

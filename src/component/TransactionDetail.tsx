@@ -18,7 +18,7 @@ const TransactionDetail: React.FC<TransactionDetailProps> = ({ transaction, isDi
         { 
             field: 'txId',
             headerName: 'Transaction ID',
-            width: 180,
+            width: 160,
         },
         {
             field: 'creator',
@@ -28,11 +28,10 @@ const TransactionDetail: React.FC<TransactionDetailProps> = ({ transaction, isDi
         {
             field: 'createdTimestamp',
             headerName: 'Created At',
-            valueGetter: (params: GridValueGetterParams<ApprovalTransaction>) => {
-                const date: Date = new Date(params.row.createdTimestamp * 1000)
-                return date.toLocaleString()
-            },
-            width: 150,
+            type: 'dateTime',
+            valueGetter: (params: GridValueGetterParams<ApprovalTransaction>) => 
+                new Date(params.row.createdTimestamp * 1000),
+            width: 170,
         },
         {
             field: 'window',
@@ -118,7 +117,7 @@ const TransactionDetail: React.FC<TransactionDetailProps> = ({ transaction, isDi
 
                 <DataGrid
                     rows={transaction.approvals}
-                    columns={approvalTrasnsactionslDataGridColumnDefinitions}
+                    columns={approvalTransactionsDataGridColumnDefinitions}
                     initialState={{
                         pagination: {
                           paginationModel: {

@@ -7,7 +7,6 @@ import { IconButton, ListItemButton, ListItemText, Avatar, ListItemAvatar, Grid,
 
 import { type ForkStatusResponse } from '../type/api'
 
-const API_ENDPOINT = process.env.REACT_APP_API_ENDPOINT;
 const POLL_INTERVAL = Number(process.env.REACT_APP_POLL_INTERVAL);
 
 interface ContainerForkStatusProps {
@@ -44,19 +43,13 @@ const ContainerForkStatus: React.FC<ContainerForkStatusProps> = ({ containerNum 
     React.useEffect(() => {
         // Function to fetch data from the backend
         const fetchData = (): void => {
-
-            // Create a new URL object with the base API endpoint
-            const url = new URL(`${API_ENDPOINT}/forkStatus`);
     
             // Define the parameters
             const params = {
                 containerNum: containerNum.toString()
             };
     
-            // Use URLSearchParams to append the parameters to the URL
-            url.search = new URLSearchParams(params).toString();
-    
-            void fetch(url)
+            void fetch('/api/v1/forkStatus?' + new URLSearchParams(params).toString())
                 .then(async (response) => {
                     return await (response.json() as Promise<ForkStatusResponse>);
                 })

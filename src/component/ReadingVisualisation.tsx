@@ -7,7 +7,6 @@ import { Paper, Box, Typography, Divider, CircularProgress, FormControl, InputLa
 import { availableContainers } from '../config';
 import { type ApprovedReading } from '../type/api'
 
-const API_ENDPOINT = process.env.REACT_APP_API_ENDPOINT;
 const POLL_INTERVAL = Number(process.env.REACT_APP_POLL_INTERVAL);
 
 const timeFormatter = new Intl.DateTimeFormat('en-US', {
@@ -27,9 +26,7 @@ const ReadingVisualisation: React.FC = () => {
     React.useEffect(() => {
         // Function to fetch data from the backend
         const fetchData = (): void => {
-            // Create a new URL object with the base API endpoint
-            const url = new URL(`${API_ENDPOINT}/transaction/approvedTempReadings`);
-    
+
             // Define the parameters
             const params = {
                 containerNum: containerNum.toString(),
@@ -37,10 +34,7 @@ const ReadingVisualisation: React.FC = () => {
                 sinceTimestamp: ((Date.now() / 1000 >> 0) - 600).toString() 
             };
     
-            // Use URLSearchParams to append the parameters to the URL
-            url.search = new URLSearchParams(params).toString();
-    
-            fetch(url)
+            fetch('/api/v1/transaction/approvedTempReadings?' + new URLSearchParams(params).toString())
                 .then(async (response) => {
                     if (!response.ok) {
                         throw new Error('Network response was not ok');
