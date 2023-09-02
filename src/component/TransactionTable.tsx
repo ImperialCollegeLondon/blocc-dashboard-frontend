@@ -1,10 +1,11 @@
 import React from 'react'
 import TocIcon from '@mui/icons-material/Toc'
+import clsx from 'clsx'
 import { Box, CircularProgress, Divider, FormControl, InputLabel, MenuItem, Paper, Select, TextField, Typography } from '@mui/material'
 import { useTheme } from '@mui/material/styles'
 import { LocalizationProvider, DateTimePicker } from '@mui/x-date-pickers'
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns'
-import { type GridColDef, type GridValueGetterParams, DataGrid, type GridRowParams } from '@mui/x-data-grid'
+import { type GridColDef, type GridValueGetterParams, DataGrid, type GridRowParams, type GridCellParams } from '@mui/x-data-grid'
 
 import { availableContainers } from '../config';
 import { type SensorChaincodeTransaction } from '../type/api'
@@ -47,6 +48,17 @@ const transactionDataGridColumnDefinitions: GridColDef[] = [
         valueGetter: (params: GridValueGetterParams<SensorChaincodeTransaction>) => 
             params.row.approvals.length,
         width: 120,
+        cellClassName: (params: GridCellParams<any, number>) => {
+            if (params.value == null) {
+              return '';
+            }
+      
+            return clsx('approvals-cell', {
+              green: params.value >= 8,
+              yellow: params.value < 8 && params.value >= 4,
+              red: params.value < 4
+            });
+        },
     },
 ]
 
@@ -198,24 +210,38 @@ const TransactionTable: React.FC = () => {
             )}
 
             {fetchStatus === FetchStatus.Success && (
-                <DataGrid
-                    rows={data}
-                    columns={transactionDataGridColumnDefinitions}
-                    initialState={{
-                        pagination: {
-                          paginationModel: {
-                            pageSize: 10,
-                          },
+                <Box
+                    sx={{
+                        '& .approvals-cell.green': {
+                            backgroundColor: theme.palette.success.main,
                         },
-                      }}
-                    getRowId={(row) => row.txId}
-                    autoHeight
-                    onRowClick={(params: GridRowParams<SensorChaincodeTransaction>) => {
-                        setSelectedRow(params.row)
-                        toggleIsDialogOpen(true)
+                        '& .approvals-cell.yellow': {
+                            backgroundColor: theme.palette.warning.main,
+                        },
+                        '& .approvals-cell.red': {
+                            backgroundColor: theme.palette.error.main,
+                        },
                     }}
-                    disableRowSelectionOnClick
-                />
+                >
+                    <DataGrid
+                        rows={data}
+                        columns={transactionDataGridColumnDefinitions}
+                        initialState={{
+                            pagination: {
+                            paginationModel: {
+                                pageSize: 10,
+                            },
+                            },
+                        }}
+                        getRowId={(row) => row.txId}
+                        autoHeight
+                        onRowClick={(params: GridRowParams<SensorChaincodeTransaction>) => {
+                            setSelectedRow(params.row)
+                            toggleIsDialogOpen(true)
+                        }}
+                        disableRowSelectionOnClick
+                    />
+                </Box>
             )}
 
             {selectedRow !== null && (
